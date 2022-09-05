@@ -4,6 +4,7 @@
 const db = require('./database')
 const Student = require('./student')
 const Campus = require('./campus')
+const { default: CampusList } = require('../../src/components/CampusList')
 
 Campus.hasMany(Student)
 Student.belongsTo(Campus)
@@ -20,6 +21,12 @@ const syncAndSeed = async () => {
         address: '1234 Husker Street',
         description: 'One of the best atheletic programs in college, famous for American Football. Was on the low, but is steadily becoming better.',
     })
+    const iowa = await Campus.create({
+      name: 'Iowa',
+      imageUrl: 'N/a',
+      address: '1234 Hawkeye Street',
+      description: 'A decent atheletic program on the college scene. Had a breakout year a few years ago, but has slowly declined recently.',
+  })
 
     //students
       const abutterfield = await Student.create({

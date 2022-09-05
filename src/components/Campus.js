@@ -5,7 +5,7 @@ function Campus (props) {
 
     return (
         <div className='campus'>
-            <h1>Campuses go here</h1>
+            <h1>I'm a single campus</h1>
             <p>{name}</p>
         </div>
     )
