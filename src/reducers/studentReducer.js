@@ -1,16 +1,12 @@
 const initialState =
 {
-    students: {},
-    studentToAdd: {},
-    studentToDelete: {}
+    students: []
 }
 
 
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case "LIST_STUDENT":
-            return {...state}
         case "ADD_STUDENT":
             return {...state, campusToAdd: action.campus}
         case "DELETE_STUDENT":

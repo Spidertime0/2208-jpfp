@@ -5,8 +5,8 @@ const volleyball = require('volleyball')
 const { default: axios } = require('axios')
 const { Router } = require('express')
 const { Campus, Student } = require('./db')
-const { default: CampusList } = require('../src/components/CampusList')
-const { listCampuses } = require('../src/reducers/action-creators')
+// const { default: CampusList } = require('../src/components/CampusList')
+const { addCampus } = require('../src/reducers/actions')
 const app = express()
 //const Campus = require('../src')
 
@@ -18,29 +18,37 @@ app.use(volleyball)
 
 //this is where some things should go
 
-//Route for Campuses
+//Routes for Campuses
 app.get('/campuses', async (req, res, next) => {
-//     // store.dispatch(listCampuses)
-//     // const store = store.getState();
-//     // res.send(store)
-
-//     res.sendFile(path.join(__dirname, '..', 'public','index.html'))
 
     try { 
           const campuses = await Campus.findAll({
            include: [Student]
         }); 
+
         res.json(campuses)
     } 
     catch (err) {next(err)}
 })
 
-//Route for Students
+app.get('/campuses/:id', async ( req, res, next) => {
+    try {
+    const curCampus = useParams()
+    }
+    catch (err) {next(err)}
+})
+
+app.delete('/campuses/:id', async (req, res, next) => {
+
+})
+
+// //Route for Students
 app.get('/students', async (req, res, next) => {
     try {
         const students = await Student.findAll({
             include: [Campus]
         });
+
         res.json(students)
 
     } catch (err) {next(err)}
@@ -48,7 +56,7 @@ app.get('/students', async (req, res, next) => {
 
 //Base Route
 app.get('/', (req, res, next) => {
-    res.send('Hello')
+    res.send('Welcome')
 })
 
 module.exports = app;
