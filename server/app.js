@@ -33,13 +33,13 @@ app.get('/campuses', async (req, res, next) => {
 
 app.get('/campuses/:id', async ( req, res, next) => {
     try {
-    const curCampus = useParams()
+    const params = useParams()
+    const campus = await Campus.findOne()
     }
     catch (err) {next(err)}
 })
 
 app.delete('/campuses/:id', async (req, res, next) => {
-
 })
 
 // //Route for Students
@@ -51,6 +51,17 @@ app.get('/students', async (req, res, next) => {
 
         res.json(students)
 
+    } catch (err) {next(err)}
+})
+
+app.get('/students/:id', async (req, res, next) => {
+    try {
+        const { params } = useParams()
+        console.log (params)
+        const student = await Student.findByPK(params.id)({
+            include: [Campus]
+        })
+        res.json(student)
     } catch (err) {next(err)}
 })
 

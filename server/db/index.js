@@ -37,6 +37,14 @@ const syncAndSeed = async () => {
         gpa: 3.8,
 
       })
+
+      const bgarner = await Student.create({
+        firstName: 'Borgo',
+        lastName: 'Garner',
+        email: 'bgarner@gmail.com',
+        imageUrl: 'N/a',
+        gpa: 2.6
+      })
     
 
     console.log(`

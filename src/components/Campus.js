@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import SingleCampus from './SingleCampus'
 
 function Campus (props) {
     const name = props.campus.name
@@ -11,6 +12,7 @@ function Campus (props) {
     return (
         <div className='campus'>
             <h4>{name}</h4>
+            <button onClick={SingleCampus}>see campus</button>
             <p>Image: {image}</p>
             <p>Address: {address}</p>
             <p>Description: {description}</p>
