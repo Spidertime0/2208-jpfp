@@ -22,6 +22,14 @@ const CampusList = (props) => {
             {
                 campuses.map(campus => <Campus campus={campus} key={campus.id} />)
             }
+            <h4>Add Campus</h4>
+            <form action="/campus/add">
+                <label for="campusName">Campus name: </label><br/>
+                <input type="text" id="campusName"></input><br/>
+                <label for="campusAddress">Campus Address: </label><br/>
+                <input type="text" id="campusAddress"></input><br/>
+                <input type="submit" value="Submit"></input>
+            </form>
         </div>
     )
 }

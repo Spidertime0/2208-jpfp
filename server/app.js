@@ -40,9 +40,21 @@ app.get('/campuses/:id', async ( req, res, next) => {
 })
 
 app.delete('/campuses/:id', async (req, res, next) => {
+
 })
 
-// //Route for Students
+app.get('/campus/add', async (req, res, next) => {
+
+        const newCampus = await Campus.create({
+            name: 'name',
+            imageUrl: 'N/a',
+            address: 'address',
+            description: ''
+        })
+        res.send(newCampus)
+})
+
+// //Routes for Students
 app.get('/students', async (req, res, next) => {
     try {
         const students = await Student.findAll({
@@ -65,9 +77,22 @@ app.get('/students/:id', async (req, res, next) => {
     } catch (err) {next(err)}
 })
 
+app.get('/student/add', async (req, res, next) => {
+
+    const newStudent = await Student.create({
+        firstName: 'firstName',
+        lastName: 'lastName',
+        email: 'email@gmail.com',
+        imageUrl: 'imageUrl',
+        gpa: 0.0
+    })
+    res.send(newStudent)
+})
+
 //Base Route
-app.get('/', (req, res, next) => {
-    res.send('Welcome')
+app.get('*', (err, req, res, next) => {
+    console.error(err)
+    res.status(404).send('Please enter a valid URL')
 })
 
 module.exports = app;
