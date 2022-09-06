@@ -13,8 +13,8 @@ function Student (props) {
 
     return (
         <div className='student'>
-            <p>{firstName} {lastName}</p>
-            <button onClick={StudentList}>see student</button>
+            <p><button onClick={'Delete Student'}>X</button>{firstName} {lastName}</p>
+            <button onClick={StudentList}>See student</button><button onClick={'Update'}>Update student</button>
             <p>Email: {email}</p>
             <p>Image: {image}</p>
             <p>GPA: {gpa}</p>

@@ -11,11 +11,12 @@ function Campus (props) {
 
     return (
         <div className='campus'>
-            <h4>{name}</h4>
-            <button onClick={SingleCampus}>see campus</button>
+            <h4><button onClick={'Delete Campus'}>X</button>{name}</h4>
+            <button onClick={SingleCampus}>See campus</button><button onClick={'Update'}>Update campus</button>
             <p>Image: {image}</p>
             <p>Address: {address}</p>
             <p>Description: {description}</p>
+            
         </div>
     )
 }
