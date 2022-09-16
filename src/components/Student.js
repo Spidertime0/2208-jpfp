@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import StudentList from './StudentList'
@@ -11,10 +12,14 @@ function Student (props) {
     const campus = props.student.campus
     const id = props.student.id
 
+    async function deleteStudent(id) {
+        await axios.delete(`students/${id}`)  
+    }
+
     return (
-        <div className='student'>
-            <p><button onClick={'Delete Student'}>X</button>{firstName} {lastName}</p>
-            <button onClick={StudentList}>See student</button><button onClick={'Update'}>Update student</button>
+        <div className='students'>
+            <p><button onClick={deleteStudent(id)}>X</button>{firstName} {lastName}</p>
+            <button onClick={'Update'}>Update student</button>
             <p>Email: {email}</p>
             <p>Image: {image}</p>
             <p>GPA: {gpa}</p>

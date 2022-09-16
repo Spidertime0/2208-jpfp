@@ -1,5 +1,5 @@
-const ADD_CAMPUS = "ADD_CAMPUS"
-const DELETE_CAMPUS = "DELETE_CAMPUS"
+// const ADD_CAMPUS = "ADD_CAMPUS"
+// const DELETE_CAMPUS = "DELETE_CAMPUS"
 // const ADD_STUDENT = "ADD_STUDENT"
 // const DELETE_STUDENT = "DELETE_STUDENT"
 
@@ -20,24 +20,24 @@ const DELETE_CAMPUS = "DELETE_CAMPUS"
 //     type: DELETE_STUDENT, student: student
 // })
 
-import { RECEIVE_CAMPUSES } from "../actions/campus-actions"
+// import { RECEIVE_CAMPUSES } from "../actions/campus-actions"
 
-const initialState =
-{
-    campuses: []
-}
+// const initialState =
+// {
+//     campuses: []
+// }
 
-    const campusReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case RECEIVE_CAMPUSES:
-            return {...state, campuses: [...state.campuses, ...action.campuses]}
-        case ADD_CAMPUS:
-            return {...state, campuses: [...state.campuses, action.campus]}
-        case DELETE_CAMPUS:
-            return {...state, campuses: state.campuses.filter(campus => campus.id !== action.campusId)}
-        default:
-            return state;
-    }
-}
+//     const campusReducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case RECEIVE_CAMPUSES:
+//             return {...state, campuses: [...state.campuses, ...action.campuses]}
+//         case ADD_CAMPUS:
+//             return {...state, campuses: [...state.campuses, action.campus]}
+//         case DELETE_CAMPUS:
+//             return {...state, campuses: state.campuses.filter(campus => campus.id !== action.campusId)}
+//         default:
+//             return state;
+//     }
+// }
 
-export default campusReducer
+// export default campusReducer

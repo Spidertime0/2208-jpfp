@@ -1,8 +1,9 @@
-const { combineReducers } = require("@reduxjs/toolkit");
-import campusReducer from "./campusReducer";
-const { default: studentReducer } = require("./studentReducer");
+// import { campusReducer } from "../store/campus-reducers";
 
-export const reducerCombiner = combineReducers({
-    campus: campusReducer, 
-    student: studentReducer
-})
+// const { combineReducers } = require("@reduxjs/toolkit");
+// //const { default: studentReducer } = require("./studentReducer")
+
+// export const reducerCombiner = combineReducers({
+//     campus: campusReducer,
+//     //student: studentReducer
+// })

@@ -1,7 +1,8 @@
 import {createStore, applyMiddleware, combineReducers} from "redux";
 import thunk from "redux-thunk";
-import campusReducer from "../reducers/campusReducer";
-import studentReducer from "../reducers/studentReducer";
+import { campusReducer } from "./campus-reducers";
+import { studentReducer } from "./student-reducers";
+
 
 const rootReducer= combineReducers({
     campuses: campusReducer,
