@@ -9,9 +9,10 @@ const DELETE_STUDENT = 'DELETE_STUDENT';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 
 //action creators
-const _listStudents = () => {
+const _listStudents = (student) => {
     return {
-        type: LIST_STUDENTS
+        type: LIST_STUDENTS,
+        student
     }
 }
 const _previewStudent = (student) => {
@@ -45,8 +46,8 @@ const _updateStudent = (student) => {
 //Thunk creators
 export const listStudents = () => {
     return async (dispatch) => {
-        const { data: listed} = await axios.get('/api/students')
-        dispatch(_listStudents(listed))
+        const data = await axios.get('/api/students')
+        dispatch(_listStudents(data.data))
     }
 }
 export const previewStudents = (student) => {
@@ -56,18 +57,16 @@ export const previewStudents = (student) => {
     }
 }
 
-export const addStudent = (student, history) => {
+export const addStudent = (student) => {
     return async (dispatch) => {
-        const {data: created} = await axios.get('/api/students', student)
-        dispatch(_addStudent(created));
-        history.push('/')
+        dispatch(_addStudent(student));
     }
 }
 
 export const deleteStudent = (student) => {
     return async (dispatch) => {
-        const {data: deleted} = await axios.get('/api/students', student)
-        dispatch(_deleteStudent(deleted))
+        // const data = await axios.get('/api/students', student)
+        dispatch(_deleteStudent(student))
     }
 }
 
@@ -86,6 +85,7 @@ export const studentReducer = (state = [], action) => {
         case PREVIEW_STUDENT:
             return action.student
         case ADD_STUDENT:
+            action.student.id = [...state].length + 1
             return [...state, action.student]
         case DELETE_STUDENT:
             return state.filter((student) => student.id !== action.student.id);

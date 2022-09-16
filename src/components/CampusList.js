@@ -27,11 +27,8 @@ const CampusList = () => {
     // }
 
     const handleAddCampus = (evt) => {
-        console.log('name and address: ', campusName, campusAddress)
         evt.preventDefault();
         dispatch(addCampus({name:campusName, address:campusAddress}))
-        // setCampusName("")
-        // setCampusAddress("")
     }
 
     return (
@@ -63,18 +60,5 @@ const CampusList = () => {
     )
 }
 
-function mapStateToProps (state){
-    return {
-        campuses: state.campuses.campuses,
-        state
-    }
-}
-function mapDispatchToProps (dispatch) {
-    return {
-      dispatchFetchCampuses: function() {
-        dispatch(fetchCampuses());
-      }
-    };
-  }
 
 export default CampusList;

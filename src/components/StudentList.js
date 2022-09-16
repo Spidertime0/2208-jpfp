@@ -3,6 +3,7 @@ import Student from './Student';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { addStudent, listStudents } from '../store/student-reducers';
 
 
 const StudentList = () => {
@@ -13,49 +14,47 @@ const StudentList = () => {
 
     const Navigate = useNavigate();
     
-
-    const [studentName, setStudentName] = useState("")
-    
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
 
     useEffect(() => {
-        const fetchStudents = async() => { 
-            const response = await axios.get('/students')
-            setStudents(response.data)
-            dispatch(fetchStudents())
-        }
+        dispatch(listStudents())
     }, []);
 
-    // useEffect(() => {
-    //     const displayOneStudent = async(req, res) => {
-    //         const response = await axios.get(`/students/${students.id}`)
-    //         const params = req.params
-    //         if (params.id === response.id){
-    //             setStudents([res])
-    //         }
-    //         displayOneStudent();
-    //     }
-    // })
 
-    function handleChange(event) {
-        setStudents([event.target.value]);
+    const handleAddStudent = (evt) => {
+        evt.preventDefault();
+        dispatch(addStudent({firstName: firstName, lastName:lastName, email:email }))
     }
    
     return (
         <div id='students'>
             <h2>Students</h2>
             {
-                students.map(student => (<><button onClick={handleChange}>See student</button>
-                <Student student={student} key={student.id} /></>
-                ))
+                studentStore && studentStore.map(student => <Student student={student} key={student.id} />)
             }
             <h4>Add Student</h4>
-            <form action="/students/add">
+            <form id="add-student-form" onSubmit={handleAddStudent}>
+
                 <label htmlFor="firstName">First name: </label><br/>
-                <input type="text" id="firstName"></input><br/>
+                <input 
+                    name="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}/><br/>
+
                 <label htmlFor="lastName">Last name: </label><br/>
-                <input type="text" id="lastName"></input><br/>
+                <input 
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}/><br/>
+
                 <label htmlFor="email">Email: </label><br/>
-                <input type="text" id="email"></input><br/>
+                <input 
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}/><br/>
+
                 <input type="submit" value="Submit"></input>
             </form>
         </div>

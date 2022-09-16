@@ -1,15 +1,23 @@
 const { Campus, Student } = require('../db')
 const router = require('express').Router()
 
-
+// router.get('/', async (req, res, next) => {
+//     try { 
+//         const campuses = await Campus.findAll({
+//         include: [Student]
+//         }); 
+//     res.send(campuses)
+//     } 
+//     catch (err) {next(err)}
+// })
 // //Routes for Students
-router.get('/students', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const students = await Student.findAll({
             include: [Campus]
         });
 
-        res.json(students)
+        res.send(students)
 
     } catch (err) {next(err)}
 })

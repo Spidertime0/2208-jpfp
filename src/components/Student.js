@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteStudent } from '../store/student-reducers'
 import StudentList from './StudentList'
 
 function Student (props) {
@@ -12,13 +13,17 @@ function Student (props) {
     const campus = props.student.campus
     const id = props.student.id
 
-    async function deleteStudent(id) {
-        await axios.delete(`students/${id}`)  
+    const dispatch = useDispatch()
+
+    const handleDeleteStudent = async(evt) => {
+        evt.preventDefault();
+        dispatch(deleteStudent(props.student))
+
     }
 
     return (
-        <div className='students'>
-            <p><button onClick={deleteStudent(id)}>X</button>{firstName} {lastName}</p>
+        <div className='student'>
+            <p><button onClick={handleDeleteStudent}>X</button>{firstName} {lastName}</p>
             <button onClick={'Update'}>Update student</button>
             <p>Email: {email}</p>
             <p>Image: {image}</p>

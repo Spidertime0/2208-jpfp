@@ -18,12 +18,6 @@ function Campus (props) {
     //     dispatch()
     // })
 
-    const handleSubmit = async(evt) => {
-        evt.preventDefault();
-        await dispatch(updateCampus({campuses}))
-        Navigate('/campuses')
-    }
-
 
     const handleSeeCampus = async(evt) => {
         evt.preventDefault();
@@ -36,9 +30,6 @@ function Campus (props) {
 
     const handleDeleteCampus = (evt) => {
         evt.preventDefault();
-        console.log('Evt: ', evt)
-        console.log('id: ', id)
-        console.log('props', props.campus)
         dispatch(deleteCampus(props.campus))
     }
 
