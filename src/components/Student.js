@@ -1,7 +1,6 @@
-import axios from 'axios'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import { deleteStudent } from '../store/student-reducers'
 import StudentList from './StudentList'
 
@@ -11,9 +10,10 @@ function Student (props) {
     const email = props.student.email
     const image = props.student.imageUrl
     const gpa = props.student.gpa
-    const campus = props.student.campus
+    const campus = props.student.foreignKey
     const id = props.student.id
-
+    console.log(campus)
+    const Navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleDeleteStudent = (evt) => {
@@ -24,7 +24,6 @@ function Student (props) {
 
     const handleNavigate = (evt) => {
         evt.preventDefault();
-
         Navigate(`/students/${id}`)
     }
 
@@ -33,7 +32,6 @@ function Student (props) {
             <p><button onClick={handleDeleteStudent}>X</button>{firstName} {lastName}</p>
             <button onClick={handleNavigate}>View Student</button>
             <p>Email: {email}</p>
-            <p>Image: {image}</p>
             <p>GPA: {gpa}</p>
             <p>Campus: {campus}</p>
                 

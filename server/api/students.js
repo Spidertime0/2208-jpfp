@@ -15,10 +15,10 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
     try {
         const params  = req.params
-        console.log (params)
         const student = await Student.findByPk(params.id)
         res.send(student)
-    } catch (err) {next(err)}
+    } 
+    catch (err) {next(err)}
 })
 
 router.delete('/delete/:id', async (req, res, next) => {

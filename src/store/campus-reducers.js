@@ -56,7 +56,7 @@ export const listCampuses = () => {
 }
 export const previewCampus = (campus) => {
     return async (dispatch) => {
-        const previewed = await axios.get(`/api/campuses/${campus.id}`)
+        const previewed = await axios.get(`/api/campuses/${campus}`)
         dispatch(_previewCampus(previewed))
     }
 }
@@ -89,7 +89,8 @@ export const campusReducer = (state = [], action) => {
         case LIST_CAMPUSES:
             return action.campus
         case PREVIEW_CAMPUS:
-            return action.campus
+            console.log(state)
+            return state
         case ADD_CAMPUS:
             action.campus.id = [...state].length + 1
             return [...state, action.campus]

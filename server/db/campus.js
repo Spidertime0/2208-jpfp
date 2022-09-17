@@ -21,8 +21,12 @@ const CampusInfo = db.define('campus', {
         }
     },
     description:{
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
 
+    },
+    attendees:{
+        type: Sequelize.STRING,
+        defaultValue:''
     }
 })
 

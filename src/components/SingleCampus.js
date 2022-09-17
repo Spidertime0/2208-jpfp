@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { deleteCampus, updateCampus } from "../store/campus-reducers";
+import { deleteCampus, previewCampus, updateCampus } from "../store/campus-reducers";
 
 
 
@@ -18,6 +18,14 @@ const SingleCampus = (props) => {
     const Navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+    if(!campus){
+        
+        console.log(id)
+        dispatch(previewCampus(id))
+        return <h1>Sorry, something went wrong...</h1>
+        
+    }
     
     const name = campus.name
     const image = campus.imageUrl
@@ -52,7 +60,7 @@ const SingleCampus = (props) => {
         <>
         <div id='campus'>
             <h4><button onClick={handleDeleteCampus}>X</button>{name}</h4>
-            <p>Image: {image}</p>
+            <img src={image} alt="campus_logo.png"/>
             <p>Address: {address}</p>
             <p>Description: {description}</p>
         </div>

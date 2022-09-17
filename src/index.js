@@ -9,15 +9,6 @@ import { createStore } from "redux";
 
 const store = configureStore()
 
-//DELETE ME
-Object.defineProperty(window, 'reduxStore', {
-    get() {
-      return store.getState();
-    },
-  });
-//
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

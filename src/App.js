@@ -27,10 +27,6 @@ const App = () => {
                     <Route path="/students/:id" element={<SingleStudent/>}/>  
                 </Routes>
                 </div>
-                <div id='main-section'>
-                {/* <CampusList/>
-                <StudentList/> */}
-                </div>
             </div>
     ) 
 }

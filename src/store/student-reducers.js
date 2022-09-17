@@ -72,7 +72,7 @@ export const deleteStudent = (student) => {
 
 export const updateStudent = (student) => {
     return async (dispatch) => {
-        const data = await axios.put(`/api/students/put/${student.id}`)
+        const data = await axios.patch(`/api/students/patch/${student.id}`)
         dispatch(_updateStudent(student))
     }
 }

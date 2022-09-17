@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import SingleCampus from './SingleCampus'
 import { deleteCampus, previewCampus, updateCampus } from '../store/campus-reducers'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -19,7 +18,6 @@ function Campus (props) {
 
     const handleNavigate = (evt) => {
         evt.preventDefault();
-
         Navigate(`/campuses/${props.campus.id}`)
     }
 
@@ -33,7 +31,6 @@ function Campus (props) {
         <div className='singleCampus'>
             <h4><button onClick={handleDeleteCampus}>X</button>{name}</h4>
             <button onClick={handleNavigate}>View Campus</button>
-            <p>Image: {image}</p>
             <p>Address: {address}</p>
             <p>Description: {description}</p>
             

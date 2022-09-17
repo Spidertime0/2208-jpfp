@@ -28,6 +28,10 @@ const Student = db.define('student',{
     },
     gpa:{
         type: Sequelize.FLOAT,
+    },
+    foreignKey: {
+        type: Sequelize.STRING,
+        defaultValue:'No set campuses!'
     }
 })
 

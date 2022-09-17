@@ -7,7 +7,9 @@ const Campus = require('./campus')
 // const { default: CampusList } = require('../../src/components/CampusList')
 
 Campus.hasMany(Student)
-Student.belongsTo(Campus)
+Student.belongsTo(Campus, {
+  foreignKey: "set_campus"
+})
 
 const syncAndSeed = async () => {
     await db.sync({ force: true });
@@ -17,13 +19,13 @@ const syncAndSeed = async () => {
     //campuses
       const nebraska = await Campus.create({
         name: 'Nebraska',
-        imageUrl: 'N/a',
+        imageUrl: 'https://1000logos.net/wp-content/uploads/2019/09/Nebraska-Cornhuskers-football-logo.jpg',
         address: '1234 Husker Street',
         description: 'Great athletic program, famous for American Football. Was on the low, but is steadily becoming better.',
     })
       const iowa = await Campus.create({
         name: 'Iowa',
-        imageUrl: 'N/a',
+        imageUrl: 'https://brand.uiowa.edu/sites/brand.uiowa.edu/files/styles/widescreen__768_x_432/public/2020-05/Tigerhawk-gold%20on%20black%402x.png?h=e39f7b2b&itok=QFZ_pyzZ/a',
         address: '1234 Hawkeye Street',
         description: 'A decent atheletic program on the college scene. Had a breakout year a few years ago, but has slowly declined recently.',
   })
@@ -33,17 +35,18 @@ const syncAndSeed = async () => {
         firstName: 'Alec',
         lastName: 'Butterfield',
         email: 'alec.butterfield1@gmail.com',
-        imageUrl: 'N/a',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Letter_A.svg/1200px-Letter_A.svg.png',
         gpa: 3.8,
-
+        foreignKey: 'Nebraska'
       })
 
       const bgarner = await Student.create({
         firstName: 'Borgo',
         lastName: 'Garner',
         email: 'bgarner@gmail.com',
-        imageUrl: 'N/a',
-        gpa: 2.6
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/LetterB.svg/640px-LetterB.svg.png',
+        gpa: 2.6,
+        foreignKey: 'Nebraska'
       })
     
 
