@@ -12,7 +12,7 @@ function Student (props) {
     const gpa = props.student.gpa
     const campus = props.student.foreignKey
     const id = props.student.id
-    console.log(campus)
+    
     const Navigate = useNavigate();
     const dispatch = useDispatch();
 

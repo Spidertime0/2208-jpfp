@@ -58,7 +58,9 @@ export const previewStudents = (student) => {
 }
 
 export const addStudent = (student) => {
+    console.log('student: ', student)
     return async (dispatch) => {
+        await axios.post(`/api/students/post/${student.id}`, student)
         dispatch(_addStudent(student));
     }
 }
@@ -72,7 +74,7 @@ export const deleteStudent = (student) => {
 
 export const updateStudent = (student) => {
     return async (dispatch) => {
-        const data = await axios.patch(`/api/students/patch/${student.id}`)
+        await axios.patch(`/api/students/patch/${student.id}`, student)
         dispatch(_updateStudent(student))
     }
 }
@@ -98,6 +100,9 @@ export const studentReducer = (state = [], action) => {
                         lastName: action.student.lastName,
                         email: action.student.email
                     }
+                }
+                else {
+                    return student
                 }
             })
         default:

@@ -17,8 +17,19 @@ router.get('/:id', async ( req, res, next) => {
     try {
     const params = req.params
     const campus = await Campus.findByPk(params.id)
-    console.log(campus.dataValues)
     res.send(campus.dataValues)
+    }
+    catch (err) {next(err)}
+})
+
+router.post('/post/:id', async (req, res, next) => {
+    try{
+        const body = req.body
+        await Campus.create({
+            name: body.name,
+            address: body.address,
+        })
+        res.redirect('/campuses')
     }
     catch (err) {next(err)}
 })

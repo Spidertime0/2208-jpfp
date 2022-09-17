@@ -2676,8 +2676,10 @@ var CampusList = function CampusList() {
     evt.preventDefault();
     dispatch((0,_store_campus_reducers__WEBPACK_IMPORTED_MODULE_6__.addCampus)({
       name: campusName,
-      address: campusAddress
+      address: campusAddress,
+      id: Math.floor(Math.random() * 1000)
     }));
+    Navigate('/campuses');
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
@@ -3056,7 +3058,6 @@ function Student(props) {
   var gpa = props.student.gpa;
   var campus = props.student.foreignKey;
   var id = props.student.id;
-  console.log(campus);
   var Navigate = (0,react_router__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
 
@@ -3153,7 +3154,8 @@ var StudentList = function StudentList() {
     dispatch((0,_store_student_reducers__WEBPACK_IMPORTED_MODULE_4__.addStudent)({
       firstName: firstName,
       lastName: lastName,
-      email: email
+      email: email,
+      id: Math.floor(Math.random() * 1000)
     }));
   };
 
@@ -3378,9 +3380,13 @@ var addCampus = function addCampus(newCampus) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
+              _context3.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/campuses/post/".concat(newCampus.id), newCampus);
+
+            case 2:
               dispatch(_addCampus(newCampus));
 
-            case 1:
+            case 3:
             case "end":
               return _context3.stop();
           }
@@ -3463,7 +3469,7 @@ var campusReducer = function campusReducer() {
       return state;
 
     case ADD_CAMPUS:
-      action.campus.id = _toConsumableArray(state).length + 1;
+      action.campus.id = Math.floor(Math.random() * 10000);
       return [].concat(_toConsumableArray(state), [action.campus]);
 
     case DELETE_CAMPUS:
@@ -3673,15 +3679,20 @@ var previewStudents = function previewStudents(student) {
   }();
 };
 var addStudent = function addStudent(student) {
+  console.log('student: ', student);
   return /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(dispatch) {
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
+              _context3.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/students/post/".concat(student.id), student);
+
+            case 2:
               dispatch(_addStudent(student));
 
-            case 1:
+            case 3:
             case "end":
               return _context3.stop();
           }
@@ -3725,19 +3736,17 @@ var deleteStudent = function deleteStudent(student) {
 var updateStudent = function updateStudent(student) {
   return /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(dispatch) {
-      var data;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().patch("/api/students/patch/".concat(student.id));
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().patch("/api/students/patch/".concat(student.id), student);
 
             case 2:
-              data = _context5.sent;
               dispatch(_updateStudent(student));
 
-            case 4:
+            case 3:
             case "end":
               return _context5.stop();
           }
@@ -3779,6 +3788,8 @@ var studentReducer = function studentReducer() {
             lastName: action.student.lastName,
             email: action.student.email
           });
+        } else {
+          return student;
         }
       });
 

@@ -47,6 +47,36 @@ router.get('/add', async (req, res, next) => {
     res.send(newStudent)
 })
 
+router.post('/post/:id', async (req, res, next) => {
+    try{
+        const body = req.body
+        await Student.create({
+            firstName: body.firstName,
+            lastName: body.lastName,
+            email: body.email
+        })
+        res.redirect('/students')
+    }
+    catch(err) {next(err)}
+})
+
+router.patch('/patch/:id', async (req, res, next) => {
+    try{
+        const params = req.params
+        const body = req.body
+        await Student.update({
+            firstName: body.firstName,
+            lastName: body.lastName,
+            email: body.email
+        }, {
+            where: {
+                id: params.id
+            }
+        })
+    }
+    catch(err) {next(err)}
+})
+
 router.get('*', async (err, req, res, next) => {
     console.error(err.stack);
     const status = err.status || 500;

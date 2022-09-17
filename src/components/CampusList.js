@@ -24,7 +24,9 @@ const CampusList = () => {
 
     const handleAddCampus = (evt) => {
         evt.preventDefault();
-        dispatch(addCampus({name:campusName, address:campusAddress}))
+        dispatch(addCampus({name:campusName, address:campusAddress, id:(Math.floor(Math.random()*1000))}))
+        Navigate('/campuses')
+        
     }
 
     return (
@@ -36,6 +38,7 @@ const CampusList = () => {
             
             <h4>Add Campus</h4>
             <form id="add-campus-form" onSubmit={handleAddCampus}>
+
                 <label htmlFor="campusName">Campus Name: </label><br/>
                 <input
                     name="campusName"

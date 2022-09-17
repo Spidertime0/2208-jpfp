@@ -25,7 +25,8 @@ const StudentList = () => {
 
     const handleAddStudent = (evt) => {
         evt.preventDefault();
-        dispatch(addStudent({firstName: firstName, lastName:lastName, email:email }))
+        dispatch(addStudent({firstName: firstName, lastName:lastName, email:email, id: (Math.floor(Math.random()*1000)) }))
+
     }
    
     return (

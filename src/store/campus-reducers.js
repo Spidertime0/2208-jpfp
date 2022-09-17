@@ -63,6 +63,7 @@ export const previewCampus = (campus) => {
 
 export const addCampus = (newCampus) => {
     return async (dispatch) => {
+        await axios.post(`/api/campuses/post/${newCampus.id}`, newCampus)
         dispatch(_addCampus(newCampus));
     }
 }
@@ -92,7 +93,7 @@ export const campusReducer = (state = [], action) => {
             console.log(state)
             return state
         case ADD_CAMPUS:
-            action.campus.id = [...state].length + 1
+            action.campus.id = Math.floor(Math.random() * 10000)
             return [...state, action.campus]
         case DELETE_CAMPUS:
             return state.filter((campus) => campus.id !== action.campus.id);
