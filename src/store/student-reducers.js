@@ -65,7 +65,7 @@ export const addStudent = (student) => {
 
 export const deleteStudent = (student) => {
     return async (dispatch) => {
-        const data = await axios.get(`/api/students/delete/${student.id}`)
+        const data = await axios.delete(`/api/students/delete/${student.id}`)
         dispatch(_deleteStudent(student))
     }
 }

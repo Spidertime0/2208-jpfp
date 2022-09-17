@@ -38,7 +38,7 @@ const SingleCampus = (props) => {
             address: campusAddress
         }
         dispatch(updateCampus(updatedCampus))
-        // Navigate('/campuses')
+        Navigate('/campuses')
 
     }
 

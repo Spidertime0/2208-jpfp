@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Navigate } from 'react-router'
 import { deleteStudent } from '../store/student-reducers'
 import StudentList from './StudentList'
 
@@ -21,10 +22,15 @@ function Student (props) {
 
     }
 
+    const handleNavigate = (evt) => {
+        evt.preventDefault();
+        Navigate(`/students/${props.campus.id}`)
+    }
+
     return (
         <div className='student'>
             <p><button onClick={handleDeleteStudent}>X</button>{firstName} {lastName}</p>
-            <button onClick={'Update'}>Update student</button>
+            <button onClick={handleNavigate}>Update student</button>
             <p>Email: {email}</p>
             <p>Image: {image}</p>
             <p>GPA: {gpa}</p>

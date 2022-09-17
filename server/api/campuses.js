@@ -31,19 +31,12 @@ router.delete('/delete/:id', async (req, res, next) => {
             }
         })
         res.send('Successfully Deleted')
-
     }
     catch (err) {next(err)}
 })
 
 router.get('/add', async (req, res, next) => {
 
-        // const newCampus = await Campus.create({
-        //     name: 'name',
-        //     imageUrl: 'N/a',
-        //     address: 'address',
-        //     description: ''
-        // })
         try { 
             const campuses = await Campus.findAll({
             include: [Student]

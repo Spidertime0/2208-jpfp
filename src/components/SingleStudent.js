@@ -4,6 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { campusReducer } from "../store/campus-reducers";
 import { deleteStudent, updateStudent } from "../store/student-reducers";
+import { useNavigate } from "react-router";
 
 
 const SingleStudent = (props) => {
@@ -22,10 +23,12 @@ const SingleStudent = (props) => {
     const firstName = student.firstName
     const lastName = student.lastName
     const email = student.email
-    const image =student.imageUrl
+    const image = student.imageUrl
+    const gpa = student.gpa
 
     const handleDeleteStudent = (evt) => {
         evt.preventDefault();
+        console.log(student)
         dispatch(deleteStudent(student))
         Navigate('/students')
     }

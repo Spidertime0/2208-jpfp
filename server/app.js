@@ -21,27 +21,6 @@ app.use('/api/campuses', require('./api/campuses'))
 app.use('/api/students', require('./api/students'))
 
 
-// app.get('/campuses/:id', async (req, res, next) => {
-//     try{
-//         const params = req.params
-//         const campus = await Campus.findByPk(params.id)
-//         res.send(campus)
-//     }
-//     catch (err)
-//  {next(err)}
-     
-// })
-
-// app.get('/students/:id', async (req, res, next) => {
-//     try{
-//         const params = req.params
-//         const campus = await Student.findByPk(params.id)
-//         res.send(student)
-//     }
-//     catch (err) {next(err)}
-// })
-
-
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname,'..', 'public', 'index.html'))
   })

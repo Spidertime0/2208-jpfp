@@ -17,11 +17,25 @@ router.get('/:id', async (req, res, next) => {
         const params  = req.params
         console.log (params)
         const student = await Student.findByPk(params.id)
-        res.json(student)
+        res.send(student)
     } catch (err) {next(err)}
 })
 
-router.get('/students/add', async (req, res, next) => {
+router.delete('/delete/:id', async (req, res, next) => {
+    try {
+        const params = req.params
+        console.log('req.params: ', params)
+        await Student.destroy({
+            where: {
+                id: params.id
+            }
+        })
+        res.send('Successfully Deleted')
+    }
+    catch (err) {next(err)}
+})
+
+router.get('/add', async (req, res, next) => {
 
     const newStudent = await Student.create({
         firstName: 'firstName',
@@ -33,17 +47,6 @@ router.get('/students/add', async (req, res, next) => {
     res.send(newStudent)
 })
 
-router.delete('/delete/:id', async (req, res, next) => {
-    try {
-        const params = req.params
-        await Student.destroy({
-            where: {
-                id: params.id
-            }
-        })
-        res.send('Successfully Deleted')
-    }
-    catch (err) {next(err)}
-})
+
 
 module.exports = router
