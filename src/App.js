@@ -1,11 +1,7 @@
 import React from "react";
-import {Routes, Route, Link, Switch} from "react-router-dom"
-import Campus from "./components/Campus";
-import {useSelector} from 'react-redux';
+import {Routes, Route, Link} from "react-router-dom"
 import CampusList from "./components/CampusList";
-import { createStore } from "@reduxjs/toolkit";
 import StudentList from "./components/StudentList";
-import { BrowserRouter } from "react-router-dom";
 import SingleCampus from "./components/SingleCampus";
 import SingleStudent from "./components/SingleStudent";
 

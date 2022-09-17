@@ -4,7 +4,7 @@
 const db = require('./database')
 const Student = require('./student')
 const Campus = require('./campus')
-// const { default: CampusList } = require('../../src/components/CampusList')
+
 
 Campus.hasMany(Student)
 Student.belongsTo(Campus, {

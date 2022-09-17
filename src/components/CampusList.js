@@ -1,10 +1,7 @@
-import axios from 'axios';
 import React, {useState, useEffect} from 'react'
 import Campus from './Campus';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { fetchCampuses } from '../actions/campus-actions';
-import configureStore from '../store';
-import { addCampus, campusReducer, listCampuses } from '../store/campus-reducers';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCampus, listCampuses } from '../store/campus-reducers';
 import { useNavigate, useParams } from 'react-router';
 
 
@@ -55,6 +52,7 @@ const CampusList = () => {
                     required
                 />
                 <br/>
+                
                 <input type="submit" value="Submit"></input>
             </form>
         </div>

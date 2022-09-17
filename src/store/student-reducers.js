@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react'
 
 //action type constants
 const LIST_STUDENTS = 'LIST_STUDENTS'
@@ -58,7 +57,6 @@ export const previewStudents = (student) => {
 }
 
 export const addStudent = (student) => {
-    console.log('student: ', student)
     return async (dispatch) => {
         await axios.post(`/api/students/post/${student.id}`, student)
         dispatch(_addStudent(student));
@@ -98,7 +96,9 @@ export const studentReducer = (state = [], action) => {
                         ...student,
                         firstName: action.student.firstName,
                         lastName: action.student.lastName,
-                        email: action.student.email
+                        email: action.student.email,
+                        gpa: action.student.gpa,
+                        campus: action.student.campus
                     }
                 }
                 else {

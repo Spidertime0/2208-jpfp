@@ -1,8 +1,8 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { deleteStudent } from '../store/student-reducers'
-import StudentList from './StudentList'
+
 
 function Student (props) {
     const firstName = props.student.firstName
@@ -12,7 +12,7 @@ function Student (props) {
     const gpa = props.student.gpa
     const campus = props.student.foreignKey
     const id = props.student.id
-    
+
     const Navigate = useNavigate();
     const dispatch = useDispatch();
 

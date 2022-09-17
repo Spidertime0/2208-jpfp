@@ -53,7 +53,9 @@ router.post('/post/:id', async (req, res, next) => {
         await Student.create({
             firstName: body.firstName,
             lastName: body.lastName,
-            email: body.email
+            email: body.email,
+            gpa: body.gpa,
+            foreignKey: body.campus
         })
         res.redirect('/students')
     }

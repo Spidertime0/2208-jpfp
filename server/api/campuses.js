@@ -38,7 +38,6 @@ router.patch('/patch/:id', async (req, res, next) => {
     try {
         const params = req.params
         const body = req.body
-        console.log(params, body)
         await Campus.update({
             name: body.name,
             address: body.address

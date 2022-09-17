@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import Student from './Student';
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addStudent, listStudents } from '../store/student-reducers';
@@ -17,7 +16,9 @@ const StudentList = () => {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
-
+    const [gpa, setGpa] = useState("")
+    const [campus, setCampus] = useState("")
+    
     useEffect(() => {
         dispatch(listStudents())
     }, []);
@@ -25,7 +26,7 @@ const StudentList = () => {
 
     const handleAddStudent = (evt) => {
         evt.preventDefault();
-        dispatch(addStudent({firstName: firstName, lastName:lastName, email:email, id: (Math.floor(Math.random()*1000)) }))
+        dispatch(addStudent({firstName: firstName, lastName:lastName, email:email, gpa:gpa, campus:campus, id: (Math.floor(Math.random()*1000)) }))
 
     }
    
@@ -61,6 +62,21 @@ const StudentList = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    /><br/>
+
+                <label htmlFor="gpa">GPA: </label><br/>
+                <input 
+                    name="gpa"
+                    value={gpa}
+                    onChange={(e) => setGpa(e.target.value)}
+                    
+                    /><br/>
+
+                <label htmlFor="campus">Campus: </label><br/>
+                <input 
+                    name="campus"
+                    value={campus}
+                    onChange={(e) => setCampus(e.target.value)}
                     /><br/>
 
                 <input type="submit" value="Submit"></input>

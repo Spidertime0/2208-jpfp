@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { deleteCampus, previewCampus, updateCampus } from '../store/campus-reducers'
-import { useState, useEffect } from 'react'
+import { deleteCampus } from '../store/campus-reducers'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router'
 

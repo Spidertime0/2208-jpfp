@@ -1,9 +1,4 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react'
-import { useDispatch } from 'react-redux';
-
-
-//const dispatch = useDispatch();
 
 //action type constants
 const LIST_CAMPUSES = 'LIST_CAMPUSES'
@@ -98,7 +93,7 @@ export const campusReducer = (state = [], action) => {
         case DELETE_CAMPUS:
             return state.filter((campus) => campus.id !== action.campus.id);
         case UPDATE_CAMPUS:
-            const result = state.map((campus) => { 
+            return state.map((campus) => { 
                 if (campus.id === action.campus.id){
                     return {
                         ...campus,
@@ -110,7 +105,6 @@ export const campusReducer = (state = [], action) => {
                     return campus
                 }
             })
-            return result
         default:
             return state
     }

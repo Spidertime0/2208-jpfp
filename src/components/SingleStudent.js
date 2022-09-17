@@ -1,8 +1,6 @@
-import Student from "./Student";
 import { useState } from "react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { campusReducer } from "../store/campus-reducers";
 import { deleteStudent, updateStudent } from "../store/student-reducers";
 import { useNavigate, useParams } from "react-router";
 
