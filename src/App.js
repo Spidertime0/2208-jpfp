@@ -6,6 +6,8 @@ import CampusList from "./components/CampusList";
 import { createStore } from "@reduxjs/toolkit";
 import StudentList from "./components/StudentList";
 import { BrowserRouter } from "react-router-dom";
+import SingleCampus from "./components/SingleCampus";
+import SingleStudent from "./components/SingleStudent";
 
 const App = () => {
 
@@ -18,11 +20,14 @@ const App = () => {
                 </div>
                 <div id ='routes'>
                 <Routes>
-                        <Route path="/campuses" element={<CampusList/>}/>
-                        <Route path="/students" element={<StudentList/>}/>
+                    <Route path="/" element={<CampusList/>}/>
+                    <Route path="/campuses" element={<CampusList/>}/>
+                    <Route path="/students" element={<StudentList/>}/>
+                    <Route path="/campuses/:id" element={<SingleCampus/>}/>
+                    <Route path="/students/:id" element={<SingleStudent/>}/>
+                        
                 </Routes>
                 </div>
-
                 <div id='main-section'>
                 {/* <CampusList/>
                 <StudentList/> */}

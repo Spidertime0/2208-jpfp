@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 })
 
 
-router.get('/campuses/:id', async ( req, res, next) => {
+router.get('/:id', async ( req, res, next) => {
     try {
     const params = req.params
     const campus = await Campus.findByPk(params.id)
@@ -22,8 +22,18 @@ router.get('/campuses/:id', async ( req, res, next) => {
     catch (err) {next(err)}
 })
 
-router.delete('/campuses/:id', async (req, res, next) => {
+router.delete('/delete/:id', async (req, res, next) => {
+    try{
+        const params = req.params
+        await Campus.destroy({
+            where: {
+                id: params.id
+            }
+        })
+        res.send('Successfully Deleted')
 
+    }
+    catch (err) {next(err)}
 })
 
 router.get('/add', async (req, res, next) => {

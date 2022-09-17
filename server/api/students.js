@@ -1,16 +1,6 @@
 const { Campus, Student } = require('../db')
 const router = require('express').Router()
 
-// router.get('/', async (req, res, next) => {
-//     try { 
-//         const campuses = await Campus.findAll({
-//         include: [Student]
-//         }); 
-//     res.send(campuses)
-//     } 
-//     catch (err) {next(err)}
-// })
-// //Routes for Students
 router.get('/', async (req, res, next) => {
     try {
         const students = await Student.findAll({
@@ -22,7 +12,7 @@ router.get('/', async (req, res, next) => {
     } catch (err) {next(err)}
 })
 
-router.get('/students/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const params  = req.params
         console.log (params)
@@ -41,6 +31,19 @@ router.get('/students/add', async (req, res, next) => {
         gpa: 0.0
     })
     res.send(newStudent)
+})
+
+router.delete('/delete/:id', async (req, res, next) => {
+    try {
+        const params = req.params
+        await Student.destroy({
+            where: {
+                id: params.id
+            }
+        })
+        res.send('Successfully Deleted')
+    }
+    catch (err) {next(err)}
 })
 
 module.exports = router

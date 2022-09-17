@@ -1,26 +1,57 @@
-// import Student from "./Student";
-// import { useState } from "react";
-// import React from "react";
+import Student from "./Student";
+import { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { campusReducer } from "../store/campus-reducers";
+import { deleteStudent, updateStudent } from "../store/student-reducers";
 
 
+const SingleStudent = (props) => {
+    const studentStore = useSelector(state => state.students)
+    const {id} = useParams();
+    const student = studentStore.find((student) => student.id === parseInt(id))
 
-// const SingleStudent = (id) => {
+    const [studentFirstName, setStudentFirstName] = useState("")
+    const [studentLastName, setStudentLastName] = useState("")
+    const {studentEmail, setStudentEmail} = useState("")
 
-//     const [student, setStudents] = useState([])
-//     useEffect(() => {
-//         const fetchStudents = async() => {
-//             const response = await axios.get('/students')
-//             setStudents(response.data)
-//             props.dispatchFetchStudents()
-//         }
-//         fetchStudents()
-//     }, []);
+    const Navigate = useNavigate();
 
-//     return (
-//         <div id='students'>
-//             {student.map(student => <Student student={student} key={student.id} />)}
-//         </div>
-//     )
-// }
+    const dispatch = useDispatch();
 
-// export default SingleStudent
+    const firstName = student.firstName
+    const lastName = student.lastName
+    const email = student.email
+    const image =student.imageUrl
+
+    const handleDeleteStudent = (evt) => {
+        evt.preventDefault();
+        dispatch(deleteStudent(student))
+        Navigate('/students')
+    }
+
+    const handleUpdateStudent = (evt) => {
+        evt.preventDefault();
+        dispatch(updateStudent(student))
+        Navigate('/students')
+    }
+
+    const handleReturn = (evt) => {
+        evt.preventDefault();
+        Navigate('/students')
+    }
+
+    return (
+        <>
+        <div id='student'>
+            <h4><button onClick={handleDeleteStudent}>X</button></h4>
+            <p></p>
+        </div>
+
+        <br/>
+        <button onClick={handleReturn}>Return to Campuses</button>
+</>
+    )
+}
+
+export default SingleStudent

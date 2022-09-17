@@ -65,7 +65,7 @@ export const addStudent = (student) => {
 
 export const deleteStudent = (student) => {
     return async (dispatch) => {
-        // const data = await axios.get('/api/students', student)
+        const data = await axios.get(`/api/students/delete/${student.id}`)
         dispatch(_deleteStudent(student))
     }
 }
@@ -90,8 +90,15 @@ export const studentReducer = (state = [], action) => {
         case DELETE_STUDENT:
             return state.filter((student) => student.id !== action.student.id);
         case UPDATE_STUDENT:
-            return state.map((student) =>
-            student.id === action.student.id ? action.student : student)
+            return  state.map((student) => { 
+                if (student.id === action.student.id){
+                    return {
+                        ...student,
+                        name: action.student.name,
+                        address: action.student.address
+                    }
+                }
+            })
         default:
             return state
     }

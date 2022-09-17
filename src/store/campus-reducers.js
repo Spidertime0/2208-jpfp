@@ -56,7 +56,7 @@ export const listCampuses = () => {
 }
 export const previewCampus = (campus) => {
     return async (dispatch) => {
-        const { data: previewed} = await axios.get(`/api/campuses/${campus.id}`)
+        const previewed = await axios.get(`/api/campuses/${campus.id}`)
         dispatch(_previewCampus(previewed))
     }
 }
@@ -68,11 +68,8 @@ export const addCampus = (newCampus) => {
 }
 
 export const deleteCampus = (campus) => {
-    console.log('Delete request received')
     return async (dispatch) => {
-        console.log('Delete request initiated')
-        //const data = await axios.delete(`/api/campuses/${campus.id}`)
-        console.log('Delete request dispatched')
+        const data = await axios.delete(`/api/campuses/delete/${campus.id}`)
         dispatch(_deleteCampus(campus))
         
     }
@@ -80,8 +77,8 @@ export const deleteCampus = (campus) => {
 
 export const updateCampus = (campus) => {
     return async (dispatch) => {
-        const {data: updated} = await axios.get('/api/campuses', campus)
-        dispatch(_updateCampus(updated))
+        //const data = await axios.post(`/api/campuses/${campus.id}`, campus)
+        dispatch(_updateCampus(campus))
     }
 }
 
@@ -96,13 +93,22 @@ export const campusReducer = (state = [], action) => {
             action.campus.id = [...state].length + 1
             return [...state, action.campus]
         case DELETE_CAMPUS:
-            console.log('Delete reducer hit')
             return state.filter((campus) => campus.id !== action.campus.id);
         case UPDATE_CAMPUS:
-            return state.map((campus) =>
-            campus.id === action.campus.id ? action.campus : campus)
+            return  state.map((campus) => { 
+                if (campus.id === action.campus.id){
+                    return {
+                        ...campus,
+                        name: action.campus.name,
+                        address: action.campus.address
+                    }
+                }
+            })
         default:
             return state
     }
     
 }
+
+
+

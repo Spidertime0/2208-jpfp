@@ -15,7 +15,7 @@ function Student (props) {
 
     const dispatch = useDispatch()
 
-    const handleDeleteStudent = async(evt) => {
+    const handleDeleteStudent = (evt) => {
         evt.preventDefault();
         dispatch(deleteStudent(props.student))
 

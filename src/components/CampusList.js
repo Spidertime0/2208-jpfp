@@ -22,10 +22,6 @@ const CampusList = () => {
         dispatch(listCampuses())
     }, [])
 
-    // const handleAddCampus = (data) => {
-    //     dispatch(addCampus())
-    // }
-
     const handleAddCampus = (evt) => {
         evt.preventDefault();
         dispatch(addCampus({name:campusName, address:campusAddress}))
