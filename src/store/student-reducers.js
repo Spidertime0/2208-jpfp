@@ -72,8 +72,8 @@ export const deleteStudent = (student) => {
 
 export const updateStudent = (student) => {
     return async (dispatch) => {
-        const {data: updated} = await axios.get('/api/students', student)
-        dispatch(_updateStudent(updated))
+        const data = await axios.put(`/api/students/put/${student.id}`)
+        dispatch(_updateStudent(student))
     }
 }
 
@@ -94,8 +94,9 @@ export const studentReducer = (state = [], action) => {
                 if (student.id === action.student.id){
                     return {
                         ...student,
-                        name: action.student.name,
-                        address: action.student.address
+                        firstName: action.student.firstName,
+                        lastName: action.student.lastName,
+                        email: action.student.email
                     }
                 }
             })

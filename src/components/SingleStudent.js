@@ -14,7 +14,7 @@ const SingleStudent = (props) => {
 
     const [studentFirstName, setStudentFirstName] = useState("")
     const [studentLastName, setStudentLastName] = useState("")
-    const {studentEmail, setStudentEmail} = useState("")
+    const [studentEmail, setStudentEmail] = useState("")
 
     const Navigate = useNavigate();
 
@@ -28,14 +28,20 @@ const SingleStudent = (props) => {
 
     const handleDeleteStudent = (evt) => {
         evt.preventDefault();
-        console.log(student)
         dispatch(deleteStudent(student))
         Navigate('/students')
     }
 
     const handleUpdateStudent = (evt) => {
         evt.preventDefault();
-        dispatch(updateStudent(student))
+        const updatedStudent = {
+            ...student,
+            firstName: studentFirstName,
+            lastName: studentLastName,
+            email: studentEmail
+
+        }
+        dispatch(updateStudent(updatedStudent))
         Navigate('/students')
     }
 
@@ -50,7 +56,33 @@ const SingleStudent = (props) => {
             <h4><button onClick={handleDeleteStudent}>X</button></h4>
             <p></p>
         </div>
-
+        <div id='update-student'>
+        <h3>Update Campus</h3>
+        <form id="add-campus-form" onSubmit={handleUpdateStudent}>
+                <label htmlFor="firstName">First Name: </label><br/>
+                <input
+                    name="studentFirstName"
+                    value={studentFirstName}
+                    onChange={(e) => setStudentFirstName(e.target.value)}
+                />
+                <br/>
+                <label htmlFor="lastName">Last Name: </label><br/>
+                <input
+                    name="studentLastName"
+                    value={studentLastName}
+                    onChange={(e) => setStudentLastName(e.target.value)}
+                />
+                <br/>
+                <label htmlFor="studentEmail">Email: </label><br/>
+                <input
+                    name="studentEmail"
+                    value={studentEmail}
+                    onChange={(e) => setStudentEmail(e.target.value)}
+                />
+                <br/>
+                <input type="submit" value="Submit"></input>
+            </form>
+        </div>
         <br/>
         <button onClick={handleReturn}>Return to Campuses</button>
 </>

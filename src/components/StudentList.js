@@ -41,19 +41,26 @@ const StudentList = () => {
                 <input 
                     name="firstName"
                     value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}/><br/>
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                    /><br/>
 
                 <label htmlFor="lastName">Last name: </label><br/>
                 <input 
                     name="lastName"
                     value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}/><br/>
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                    /><br/>
 
                 <label htmlFor="email">Email: </label><br/>
                 <input 
+                    type="email"
                     name="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}/><br/>
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    /><br/>
 
                 <input type="submit" value="Submit"></input>
             </form>

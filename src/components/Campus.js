@@ -10,14 +10,7 @@ function Campus (props) {
     const dispatch = useDispatch();
     const Navigate = useNavigate();
     const campuses = useSelector(state => state.campuses)
-    const [campusName, setCampusName] = useState("")
     const {id} = useParams();
-
-    const handleSeeCampus = async(evt) => {
-        evt.preventDefault();
-        dispatch(previewCampus(props.campus))
-
-    }
 
     const handleDeleteCampus = (evt) => {
         evt.preventDefault();
@@ -39,7 +32,7 @@ function Campus (props) {
     return (
         <div className='singleCampus'>
             <h4><button onClick={handleDeleteCampus}>X</button>{name}</h4>
-            <button onClick={handleNavigate}>See campus</button>
+            <button onClick={handleNavigate}>View Campus</button>
             <p>Image: {image}</p>
             <p>Address: {address}</p>
             <p>Description: {description}</p>

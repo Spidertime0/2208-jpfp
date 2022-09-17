@@ -22,6 +22,23 @@ router.get('/:id', async ( req, res, next) => {
     catch (err) {next(err)}
 })
 
+router.patch('/patch/:id', async (req, res, next) => {
+    try {
+        const params = req.params
+        const body = req.body
+        console.log(params, body)
+        await Campus.update({
+            name: body.name,
+            address: body.address
+        }, {
+            where: {
+                id: params.id
+            }
+        })
+    }
+    catch (err) {next(err)}
+})
+
 router.delete('/delete/:id', async (req, res, next) => {
     try{
         const params = req.params

@@ -14,7 +14,7 @@ function Student (props) {
     const campus = props.student.campus
     const id = props.student.id
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleDeleteStudent = (evt) => {
         evt.preventDefault();
@@ -24,13 +24,14 @@ function Student (props) {
 
     const handleNavigate = (evt) => {
         evt.preventDefault();
-        Navigate(`/students/${props.campus.id}`)
+
+        Navigate(`/students/${id}`)
     }
 
     return (
-        <div className='student'>
+        <div className='singleStudent'>
             <p><button onClick={handleDeleteStudent}>X</button>{firstName} {lastName}</p>
-            <button onClick={handleNavigate}>Update student</button>
+            <button onClick={handleNavigate}>View Student</button>
             <p>Email: {email}</p>
             <p>Image: {image}</p>
             <p>GPA: {gpa}</p>

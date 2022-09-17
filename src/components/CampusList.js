@@ -41,6 +41,7 @@ const CampusList = () => {
                     name="campusName"
                     value={campusName}
                     onChange={(e) => setCampusName(e.target.value)}
+                    required
                 />
                 <br/>
                 <label htmlFor="campusAddress">Campus Address: </label><br/>
@@ -48,6 +49,7 @@ const CampusList = () => {
                     name="campusAddress"
                     value={campusAddress}
                     onChange={(e) => setCampusAddress(e.target.value)}
+                    required
                 />
                 <br/>
                 <input type="submit" value="Submit"></input>

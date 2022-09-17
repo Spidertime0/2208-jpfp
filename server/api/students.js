@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
 router.delete('/delete/:id', async (req, res, next) => {
     try {
         const params = req.params
-        console.log('req.params: ', params)
+        
         await Student.destroy({
             where: {
                 id: params.id
@@ -47,6 +47,11 @@ router.get('/add', async (req, res, next) => {
     res.send(newStudent)
 })
 
+router.get('*', async (err, req, res, next) => {
+    console.error(err.stack);
+    const status = err.status || 500;
+    res.status(status).send(err.message)
+    })
 
 
 module.exports = router

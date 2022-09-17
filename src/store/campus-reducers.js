@@ -76,8 +76,9 @@ export const deleteCampus = (campus) => {
 }
 
 export const updateCampus = (campus) => {
+
     return async (dispatch) => {
-        //const data = await axios.post(`/api/campuses/${campus.id}`, campus)
+        const data = await axios.patch(`/api/campuses/patch/${campus.id}`, campus)
         dispatch(_updateCampus(campus))
     }
 }
@@ -95,7 +96,7 @@ export const campusReducer = (state = [], action) => {
         case DELETE_CAMPUS:
             return state.filter((campus) => campus.id !== action.campus.id);
         case UPDATE_CAMPUS:
-            return  state.map((campus) => { 
+            const result = state.map((campus) => { 
                 if (campus.id === action.campus.id){
                     return {
                         ...campus,
@@ -103,7 +104,11 @@ export const campusReducer = (state = [], action) => {
                         address: action.campus.address
                     }
                 }
+                else {
+                    return campus
+                }
             })
+            return result
         default:
             return state
     }

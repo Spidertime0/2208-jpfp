@@ -32,6 +32,7 @@ const SingleCampus = (props) => {
 
     const handleUpdateCampus = (evt) => {
         evt.preventDefault();
+        console.log(campusName, campusAddress)
         const updatedCampus = {
             ...campus,
             name: campusName,

@@ -24,8 +24,7 @@ const App = () => {
                     <Route path="/campuses" element={<CampusList/>}/>
                     <Route path="/students" element={<StudentList/>}/>
                     <Route path="/campuses/:id" element={<SingleCampus/>}/>
-                    <Route path="/students/:id" element={<SingleStudent/>}/>
-                        
+                    <Route path="/students/:id" element={<SingleStudent/>}/>  
                 </Routes>
                 </div>
                 <div id='main-section'>

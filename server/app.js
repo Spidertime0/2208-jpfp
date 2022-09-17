@@ -8,7 +8,7 @@ const { Campus, Student } = require('./db')
 // const { default: CampusList } = require('../src/components/CampusList')
 const app = express()
 //const Campus = require('../src')
-
+app.use(express.json())
 // static middleware
 app.use(express.static(path.join(__dirname, '..','public')))
 
